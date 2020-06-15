@@ -22,24 +22,26 @@
                             </div>
                             <div class="block-content">
                                 <%= image_tag('sample-author1.jpg', class: "img-circle pull-left profile-thumb") %>
-                                <h3 class="block-title">
-                                    <%= link_to post_image_path(post_image.id) do %>
-                                    <i class="fa fa-map-marker"></i><%= post_image.shop_name %>
-                                    <% end %>
-                                </h3>
-                                <p><%= post_image.caption %></p>
-                                <ul class="inline-meta">
-                                    <li>By
-                                        <%= post_image.user.name %>
-                                    </li>
-                                    <li>
-                                        <%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %>
-                                    </li>
-                                </ul>
+                                <% if @user.id == current_user.id %>
+                                <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+                                <% end %>
                             </div>
+                            <h3 class="block-title">
+                                <%= link_to post_image_path(post_image.id) do %>
+                                <i class="fa fa-map-marker"></i><%= post_image.shop_name %>
+                                <% end %>
+                            </h3>
+                            <p><%= post_image.caption %></p>
+                            <ul class="inline-meta">
+                                <li>By
+                                    <%= post_image.user.name %>
+                                </li>
+                                <li>
+                                    <%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <% end %>
                 </div>
             </div>
         </div>
